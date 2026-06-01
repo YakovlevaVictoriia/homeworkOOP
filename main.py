@@ -22,3 +22,9 @@ class Ingredient:
         if other.name==self.name and other.unit==self.unit:
             return True
         return False
+class Recipe:
+    def __init__(self, title, ingredients):
+        self.title = title
+        self.ingredients = ingredients
+    def __str__(self):
+        return f"Чтобы приготовить {self.title} нужно: {self.ingredients}"
