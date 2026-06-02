@@ -114,3 +114,9 @@ class DietaryRecipe(Recipe):
             for elem in self.ingredients:
                 new_ingredients.append(Ingredient(elem.name, elem.quantity*ratio, elem.unit))
             return DietaryRecipe(self.title, self.diet_type, new_ingredients)
+
+    def __str__(self):
+        res = f"[{self.diet_type}] Чтобы приготовить {self.title} нужно:\n"
+        for i in self.ingredients:
+            res += f"{i} \n"
+        return res
