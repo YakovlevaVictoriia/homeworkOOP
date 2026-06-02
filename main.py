@@ -107,3 +107,10 @@ class DietaryRecipe(Recipe):
     def __init__(self, title, diet_type, ingredients):
         super().__init__(title, ingredients)
         self.diet_type = diet_type
+
+    def scale(self, ratio: float):
+        if self.is_valid_ratio(ratio):
+            new_ingredients=[]
+            for elem in self.ingredients:
+                new_ingredients.append(Ingredient(elem.name, elem.quantity*ratio, elem.unit))
+            return DietaryRecipe(self.title, self.diet_type, new_ingredients)
