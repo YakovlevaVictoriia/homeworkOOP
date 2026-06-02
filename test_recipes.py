@@ -1,5 +1,5 @@
 import pytest
-from main import Ingredient, Recipe, ShoppingList, DietaryRecipe
+from main import Ingredient, Recipe, ShoppingList
 
 class TestIngredient:
     def test_ingredient(self):
@@ -61,3 +61,14 @@ class TestRecipe:
         ingredient2 = Ingredient("Мука", 100.0, "г")
         recipe = Recipe("Блины", [ingredient1, ingredient2])
         assert len(recipe) == 2
+
+class TestShoppingList:
+    def test_add_recipe(self):
+        ingredient1 = Ingredient("Молоко", 250.0, "мл")
+        ingredient2 = Ingredient("Мука", 100.0, "г")
+        recipe = Recipe("Блины", [ingredient1, ingredient2])
+        shopping_list = ShoppingList()
+        shopping_list.add_recipe(recipe,3)
+        assert shopping_list.items == {"Молоко": (750.0, "мл"), "Мука": (300.0, "г")}
+        with pytest.raises(ValueError, match="Количество порций должно быть положительным"):
+            shopping_list.add_recipe(recipe,-1)
