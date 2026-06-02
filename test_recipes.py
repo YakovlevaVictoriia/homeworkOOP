@@ -20,9 +20,17 @@ class TestIngredient:
     
     def test_eq(self):
         ingredient1 = Ingredient("Молоко", 250.0, "мл")
-        ingredient2 = Ingredient("Молоко", 250.0, "мл")
+        ingredient2 = Ingredient("Молоко", 750.0, "мл")
         ingredient3 = Ingredient("Молоко", 250.0, "л")
         ingredient4 = Ingredient("Вода", 250.0, "мл")
         assert ingredient1 == ingredient2
         assert ingredient1 != ingredient3
         assert ingredient1 != ingredient4
+
+class TestRecipe:
+    def test_recipe(self):
+        ingredient1 = Ingredient("Молоко", 250.0, "мл")
+        ingredient2 = Ingredient("Мука", 100.0, "г")
+        recipe = Recipe("Блины", [ingredient1, ingredient2])
+        assert recipe.title == "Блины"
+        assert recipe.ingredients == [ingredient1, ingredient2]
