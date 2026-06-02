@@ -69,6 +69,17 @@ class TestShoppingList:
         recipe = Recipe("Блины", [ingredient1, ingredient2])
         shopping_list = ShoppingList()
         shopping_list.add_recipe(recipe,3)
-        assert shopping_list.items == {"Молоко": (750.0, "мл"), "Мука": (300.0, "г")}
+        assert shopping_list._items == [(Ingredient("Молоко", 750.0, "мл"),"Блины"), (Ingredient("Мука", 300.0, "г"),"Блины")]
         with pytest.raises(ValueError, match="Количество порций должно быть положительным"):
             shopping_list.add_recipe(recipe,-1)
+
+    def test_remove_recipe(self):
+        ingredient1 = Ingredient("Молоко", 250.0, "мл")
+        ingredient2 = Ingredient("Мука", 100.0, "г")
+        recipe1 = Recipe("Блины", [ingredient1, ingredient2])
+        recipe2 = Recipe("Панкейки", [ingredient1])
+        shopping_list = ShoppingList()
+        shopping_list.add_recipe(recipe1,3)
+        shopping_list.add_recipe(recipe2,2)
+        shopping_list.remove_recipe("Блины")
+        assert shopping_list._items == [(Ingredient("Молоко", 500.0, "мл"),"Панкейки")]
