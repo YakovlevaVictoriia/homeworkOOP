@@ -59,6 +59,9 @@ class Recipe:
                 new_ingredients.append(Ingredient(elem.name, elem.quantity*ratio, elem.unit))
             return Recipe(self.title, new_ingredients)
 
+    def __len__(self):
+        return len(self.ingredients)
+
     def __str__(self):
         res = f"Чтобы приготовить {self.title} нужно:\n"
         for i in self.ingredients:
