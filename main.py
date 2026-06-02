@@ -36,6 +36,17 @@ class Recipe:
                 flag = False
         if flag == True:
             self.ingredients.append(ingredient)
+
+    @staticmethod
+    def is_valid_ratio(ratio):
+        try:
+            if float(ratio)>0:
+                return True
+            else:
+                return False
+        except Exception:
+            return False
+
     def __str__(self):
         res = f"Чтобы приготовить {self.title} нужно:\n"
         for i in self.ingredients:
