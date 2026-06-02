@@ -97,3 +97,8 @@ class ShoppingList:
             result.append(Ingredient(name,quantity,unit))
         result.sort(key=lambda x: x.name)
         return result
+
+    def __add__(self, other: ShoppingList):
+        lst = ShoppingList()
+        lst._items = self._items + other._items
+        return lst
