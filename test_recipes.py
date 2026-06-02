@@ -34,3 +34,12 @@ class TestRecipe:
         recipe = Recipe("Блины", [ingredient1, ingredient2])
         assert recipe.title == "Блины"
         assert recipe.ingredients == [ingredient1, ingredient2]
+    def test_add_ingredient(self):
+        ingredient1 = Ingredient("Молоко", 250.0, "мл")
+        ingredient2 = Ingredient("Мука", 100.0, "г")
+        recipe = Recipe("Блины", [ingredient1])
+        recipe.add_ingredient(ingredient2)
+        assert recipe.ingredients == [ingredient1, ingredient2]
+
+        recipe.add_ingredient(ingredient1)
+        assert recipe.ingredients == [Ingredient("Молоко", 500.0, "мл"), ingredient2]
