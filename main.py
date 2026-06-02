@@ -22,6 +22,8 @@ class Ingredient:
         return f"Ingredient('{self.name}', {self.quantity}, '{self.unit}')"
 
     def __eq__(self, other):
+        if not isinstance(other, Ingredient):
+            return False
         if other.name==self.name and other.unit==self.unit:
             return True
         return False
@@ -58,6 +60,9 @@ class Recipe:
             for elem in self.ingredients:
                 new_ingredients.append(Ingredient(elem.name, elem.quantity*ratio, elem.unit))
             return Recipe(self.title, new_ingredients)
+        else:
+            raise ValueError("Количество порций должно быть положительным")
+
 
     def __len__(self):
         return len(self.ingredients)
@@ -104,7 +109,9 @@ class ShoppingList:
         return lst
 
 class DietaryRecipe(Recipe):
-    def __init__(self, title, diet_type, ingredients):
+    def __init__(self, title, diet_type, ingredients=None):
+        if ingredients is None:
+            ingredients = []
         super().__init__(title, ingredients)
         self.diet_type = diet_type
 
@@ -114,6 +121,8 @@ class DietaryRecipe(Recipe):
             for elem in self.ingredients:
                 new_ingredients.append(Ingredient(elem.name, elem.quantity*ratio, elem.unit))
             return DietaryRecipe(self.title, self.diet_type, new_ingredients)
+        else:
+            raise ValueError("Количество порций должно быть положительным")
 
     def __str__(self):
         res = f"[{self.diet_type}] Чтобы приготовить {self.title} нужно:\n"
