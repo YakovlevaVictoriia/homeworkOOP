@@ -53,3 +53,5 @@ class TestRecipe:
         assert scaled_recipe is not recipe
         assert scaled_recipe.title == "Блины"
         assert scaled_recipe.ingredients == [Ingredient("Молоко", 500.0, "мл"), Ingredient("Мука", 200.0, "г")]
+        with pytest.raises(ValueError, match="Количество порций должно быть положительным"):
+            recipe.scale(-1)
