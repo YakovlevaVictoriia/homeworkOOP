@@ -83,3 +83,13 @@ class TestShoppingList:
         shopping_list.add_recipe(recipe2,2)
         shopping_list.remove_recipe("Блины")
         assert shopping_list._items == [(Ingredient("Молоко", 500.0, "мл"),"Панкейки")]
+
+    def test_get_list(self):
+        ingredient1 = Ingredient("Молоко", 250.0, "мл")
+        ingredient2 = Ingredient("Мука", 100.0, "г")
+        recipe1 = Recipe("Блины", [ingredient1, ingredient2])
+        recipe2 = Recipe("Панкейки", [ingredient1])
+        shopping_list = ShoppingList()
+        shopping_list.add_recipe(recipe1,3)
+        shopping_list.add_recipe(recipe2,2)
+        assert shopping_list.get_list() == [(Ingredient("Молоко", 1250.0, "мл")), (Ingredient("Мука", 300.0, "г"))]
