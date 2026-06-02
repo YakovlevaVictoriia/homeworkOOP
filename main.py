@@ -102,3 +102,8 @@ class ShoppingList:
         lst = ShoppingList()
         lst._items = self._items + other._items
         return lst
+
+class DietaryRecipe(Recipe):
+    def __init__(self, title, diet_type, ingredients):
+        super().__init__(title, ingredients)
+        self.diet_type = diet_type
