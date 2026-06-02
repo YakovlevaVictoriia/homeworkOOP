@@ -8,6 +8,7 @@ class Ingredient:
     @property
     def quantity(self):
         return self._quantity
+
     @quantity.setter
     def quantity(self,value):
         if value<=0:
@@ -16,18 +17,22 @@ class Ingredient:
 
     def __str__(self):
         return f"{self.name}: {self.quantity} {self.unit}" 
+
     def __repr__(self):
         return f"Ingredient('{self.name}', {self.quantity}, '{self.unit}')"
+
     def __eq__(self, other):
         if other.name==self.name and other.unit==self.unit:
             return True
         return False
+
 class Recipe:
     def __init__(self, title, ingredients):
         self.title = title
         self.ingredients = []
         for elem in ingredients:
             self.add_ingredient(elem)
+
     def add_ingredient(self, ingredient: Ingredient):
         flag = True
         for elem in self.ingredients:
@@ -46,6 +51,13 @@ class Recipe:
                 return False
         except Exception:
             return False
+
+    def scale(self, ratio: float):
+        if self.is_valid_ratio(ratio):
+            new_ingredients=[]
+            for elem in self.ingredients:
+                new_ingredients.append(Ingredient(elem.name, elem.quantity*ratio, elem.unit))
+            return Recipe(self.title, new_ingredients)
 
     def __str__(self):
         res = f"Чтобы приготовить {self.title} нужно:\n"
