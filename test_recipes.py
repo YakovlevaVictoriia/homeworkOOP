@@ -55,3 +55,9 @@ class TestRecipe:
         assert scaled_recipe.ingredients == [Ingredient("Молоко", 500.0, "мл"), Ingredient("Мука", 200.0, "г")]
         with pytest.raises(ValueError, match="Количество порций должно быть положительным"):
             recipe.scale(-1)
+    
+    def test_len(self):
+        ingredient1 = Ingredient("Молоко", 250.0, "мл")
+        ingredient2 = Ingredient("Мука", 100.0, "г")
+        recipe = Recipe("Блины", [ingredient1, ingredient2])
+        assert len(recipe) == 2
