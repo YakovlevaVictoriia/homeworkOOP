@@ -85,3 +85,15 @@ class ShoppingList:
             if item[1]!=title:
                 items.append(item)
         self._items=items
+
+    def get_list(self):
+        dictionary = {}
+        for item in self._items:
+            ingredient, title = item
+            key = (ingredient.name, ingredient.unit)
+            dictionary[key] = dictionary.get(key,0) + ingredient.quantity
+        result = []
+        for (name, unit), quantity in dictionary.items():
+            result.append(Ingredient(name,quantity,unit))
+        result.sort(key=lambda x: x.name)
+        return result
