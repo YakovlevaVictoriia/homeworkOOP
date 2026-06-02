@@ -67,3 +67,14 @@ class Recipe:
         for i in self.ingredients:
             res += f"{i} \n"
         return res
+
+class ShoppingList:
+    def __init__(self):
+        self._items = []
+    
+    def add_recipe(self, recipe: Recipe, portions: float):
+        if portions <= 0:
+            raise ValueError("Количество порций должно быть положительным")
+        new_recipe=recipe.scale(portions)
+        for elem in new_recipe.ingredients:
+            self._items.append((elem,recipe.title))
