@@ -13,3 +13,7 @@ class TestIngredient:
             Ingredient("Молоко", -250.0, "мл")
         with pytest.raises(ValueError, match="Количество должно быть положительным"):
             Ingredient("Молоко", 0.0, "мл")
+
+    def test_str(self):
+        ingredient = Ingredient("Молоко", 250.0, "мл")
+        assert str(ingredient) == "Молоко: 250.0 мл"
