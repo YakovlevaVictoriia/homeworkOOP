@@ -105,3 +105,5 @@ class TestShoppingList:
         shopping_list2.add_recipe(recipe2,2)
         new_shopping_list=shopping_list1+shopping_list2
         assert new_shopping_list.get_list() ==  [(Ingredient("Молоко", 1250.0, "мл")), (Ingredient("Мука", 300.0, "г"))]
+        assert shopping_list1.get_list() ==  [(Ingredient("Молоко", 750.0, "мл")), (Ingredient("Мука", 300.0, "г"))]
+        assert shopping_list2.get_list() ==  [(Ingredient("Молоко", 500.0, "мл"))]
