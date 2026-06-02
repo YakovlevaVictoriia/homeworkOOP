@@ -25,6 +25,19 @@ class Ingredient:
 class Recipe:
     def __init__(self, title, ingredients):
         self.title = title
-        self.ingredients = ingredients
+        self.ingredients = []
+        for elem in ingredients:
+            self.add_ingredient(elem)
+    def add_ingredient(self, ingredient: Ingredient):
+        flag = True
+        for elem in self.ingredients:
+            if elem==ingredient:
+                elem.quantity+=ingredient.quantity
+                flag = False
+        if flag == True:
+            self.ingredients.append(ingredient)
     def __str__(self):
-        return f"Чтобы приготовить {self.title} нужно: {self.ingredients}"
+        res = f"Чтобы приготовить {self.title} нужно:\n"
+        for i in self.ingredients:
+            res += f"{i} \n"
+        return res
