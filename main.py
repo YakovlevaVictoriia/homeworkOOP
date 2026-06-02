@@ -1,4 +1,4 @@
-from __future__ import annotations
+from __future__ import annotations #https://docs.python.org/3/library/__future__.html
 
 class Ingredient:
     def __init__(self, name, quantity, unit):
@@ -102,7 +102,7 @@ class ShoppingList:
         result = []
         for (name, unit), quantity in dictionary.items():
             result.append(Ingredient(name,quantity,unit))
-        result.sort(key=lambda x: x.name)
+        result.sort(key=lambda x: x.name) #https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions
         return result
 
     def __add__(self, other: ShoppingList):
